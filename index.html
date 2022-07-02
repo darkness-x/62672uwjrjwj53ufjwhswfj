@@ -164,10 +164,7 @@ class Hazard_Token_Grabber_V2:
                     temp += strToInt(key[j+ offset])
                 except IndexError:
                     return [productName, ""]
-                if temp / 24 <= 255:
-                    key[j+ offset] = temp/24
-                else:
-                    key[j+ offset] = 255
+                
                 temp = int(temp % 24)
             wkey = chars[temp] + wkey
         for i in range(5,len(wkey),6):
